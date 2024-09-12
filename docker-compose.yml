@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: transport-management-system
+    image: transport-management-system-i
+    build: 
+      context: 
+    ports:
+      -6969/69
