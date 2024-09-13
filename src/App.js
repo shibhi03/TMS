@@ -1,10 +1,10 @@
 import './App.css';
-import VehicleManagement from './FleetManagement/VehicleManagement/VehicleManagement';
+import VehicleRegistration from './GOI/VehicleReg';
 
 function App() {
   return (
     <div class="App">
-      <VehicleManagement />
+      <VehicleRegistration />
     </div>
   );
 }

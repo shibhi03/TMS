@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FormStyles.css';
 
-const FleetRegistration = () => {
+function RegistrationForm() {
   const [vehicle, setVehicle] = useState({
     licensePlate: '',
     make: '',
@@ -63,4 +63,4 @@ const FleetRegistration = () => {
   );
 };
 
-export default FleetRegistration;
+export default RegistrationForm;
