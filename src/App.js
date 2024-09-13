@@ -3,7 +3,9 @@ import VehicleManagement from './FleetManagement/VehicleManagement/VehicleManage
 
 function App() {
   return (
-    <VehicleManagement />
+    <div class="App">
+      <VehicleManagement />
+    </div>
   );
 }
 

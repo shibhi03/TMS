@@ -1,0 +1,17 @@
+.grid {
+    margin: 0;
+    height: 100vh;
+}
+
+.head {
+    height: var(--header);
+}
+
+.container {
+    position: relative;
+    height: calc(100vh - var(--header));
+    /* background-color: black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

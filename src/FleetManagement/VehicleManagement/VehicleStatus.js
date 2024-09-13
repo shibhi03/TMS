@@ -1,6 +1,7 @@
 // src/components/VehicleStatus.js
-import React, { useState } from 'react';
+import React from 'react';
 import './FormStyles.css';
+import { useState } from 'react';
 
 const VehicleStatus = () => {
   const [status, setStatus] = useState({
