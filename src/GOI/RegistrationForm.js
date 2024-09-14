@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import './VehicleReg.css';
+// import axios from 'axios';
+import './FormStyles.css';
 
 const VehicleRegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -27,13 +27,13 @@ const VehicleRegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post('/api/registerVehicle', formData);
-      alert('Vehicle Registered Successfully');
-    } catch (error) {
-      console.error(error);
-      alert('Error in registration');
-    }
+    // try {
+    //   await axios.post('/api/registerVehicle', formData);
+    //   alert('Vehicle Registered Successfully');
+    // } catch (error) {
+    //   console.error(error);
+    //   alert('Error in registration');
+    // }
   };
 
   return (
