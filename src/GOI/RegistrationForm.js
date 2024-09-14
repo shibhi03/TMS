@@ -1,66 +1,81 @@
 import React, { useState } from 'react';
-import './FormStyles.css';
+import axios from 'axios';
+import './VehicleReg.css';
 
-function RegistrationForm() {
-  const [vehicle, setVehicle] = useState({
-    licensePlate: '',
-    make: '',
-    model: '',
-    year: ''
+const VehicleRegistrationForm = () => {
+  const [formData, setFormData] = useState({
+    registerNumber: '',
+    dateOfRegistration: '',
+    registrationValidity: '',
+    chassisNumber: generateChassisNumber(),
+    engineNumber: '',
+    ownerName: '',
+    address: '',
+    vehicleType: 'Truck',
+    fuelType: '',
+    color: '',
+    make: ''
   });
 
+  function generateChassisNumber() {
+    return Math.random().toString(36).substring(2, 12).toUpperCase();
+  }
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setVehicle((prev) => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(vehicle);
+    try {
+      await axios.post('/api/registerVehicle', formData);
+      alert('Vehicle Registered Successfully');
+    } catch (error) {
+      console.error(error);
+      alert('Error in registration');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Fleet Registration</h3>
-      <label>License Plate:</label>
-      <input
-        type="text"
-        name="licensePlate"
-        value={vehicle.licensePlate}
-        onChange={handleChange}
-        required
-      />
-      
-      <label>Make:</label>
-      <input
-        type="text"
-        name="make"
-        value={vehicle.make}
-        onChange={handleChange}
-        required
-      />
-      
-      <label>Model:</label>
-      <input
-        type="text"
-        name="model"
-        value={vehicle.model}
-        onChange={handleChange}
-        required
-      />
-      
-      <label>Year:</label>
-      <input
-        type="number"
-        name="year"
-        value={vehicle.year}
-        onChange={handleChange}
-        required
-      />
-      
+    <form className="vehicle-form" onSubmit={handleSubmit}>
+      <h2>Vehicle Registration Form</h2>
+
+      <label>Register Number</label>
+      <input type="text" name="registerNumber" value={formData.registerNumber} onChange={handleChange} required />
+
+      <label>Date of Registration</label>
+      <input type="date" name="dateOfRegistration" value={formData.dateOfRegistration} onChange={handleChange} required />
+
+      <label>Registration Validity</label>
+      <input type="date" name="registrationValidity" value={formData.registrationValidity} onChange={handleChange} required />
+
+      <label>Chassis Number</label>
+      <input type="text" name="chassisNumber" value={formData.chassisNumber} readOnly />
+
+      <label>Engine/Motor Number</label>
+      <input type="text" name="engineNumber" value={formData.engineNumber} onChange={handleChange} required />
+
+      <label>Owner Name</label>
+      <input type="text" name="ownerName" value={formData.ownerName} onChange={handleChange} required />
+
+      <label>Address</label>
+      <textarea name="address" value={formData.address} onChange={handleChange} required></textarea>
+
+      <label>Vehicle Type</label>
+      <input type="text" name="vehicleType" value={formData.vehicleType} readOnly />
+
+      <label>Fuel Type</label>
+      <input type="text" name="fuelType" value={formData.fuelType} onChange={handleChange} required />
+
+      <label>Color</label>
+      <input type="text" name="color" value={formData.color} onChange={handleChange} required />
+
+      <label>Make</label>
+      <input type="text" name="make" value={formData.make} onChange={handleChange} required />
+
       <button type="submit">Register Vehicle</button>
     </form>
   );
 };
 
-export default RegistrationForm;
+export default VehicleRegistrationForm;
